@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Game from './components/Game';
+import GameGrid from './components/GameGrid';
+import  Hello from './hello'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+interface AppProps { }
+interface AppState {
+  name: string;
+}
+class App extends Component<AppProps, AppState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      name: 'React'
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <Hello name={this.state.name} />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Look for the words for <strong>Cole</strong>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <Game>
+          <GameGrid/>
+        </Game>
+      </div>
+    );
+  }
 }
 
 export default App;
