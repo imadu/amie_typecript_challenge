@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from "react";
 
 export default function GameCell ({
-  index,
+  active,
   cellValue,
-  emitValue,
-  mouseDown,
   coords,
+  status,
+  ...props
 }) {
-  const [state, setState] = useState({ active: "", clickedOrHovered: false });
-  const { active } = state;
-  useEffect(() => {
-    if (!mouseDown) {
-      setState({ active: "", clickedOrHovered: false });
-    }
-  }, [mouseDown]);
+  const isActive = active && ['SELECTING', 'SELECTED'].includes(status)
 
-  const setClickedOrHoveredState = (isMouseDown = false) => {
-    if (active) {
-      alert("you cannot drag back over the same cell");
-      emitValue("", false, true);
-    }
+  const onMouseOver = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.preventDefault();
 
-    if(mouseDown) {
-      setState((prevState) => ({ ...prevState, active: "hover" }));
-    }
-  };
+    props.onMouseOver(coords)
+  }
+
+  const onMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.preventDefault();
+
+    props.onMouseDown(coords);
+  }
+
+  const onMouseUp = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.preventDefault();
+
+    props.onMouseUp(coords)
+  }
+ 
 
 
   return (
     <div
-      className={`cell cell-${index} ${active}`}
-      onMouseDown={() => emitValue(coords, true)}
-      onMouseUp={() => emitValue(coords, false)}
-      onMouseOver={() => setClickedOrHoveredState()}
-      // onTouchStart={() => setClickedOrHoveredState(true, true)}
-      // onTouchMove={() => setClickedOrHoveredState(true, true)}
+      data-active={isActive}
+      className="cell"
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+      onMouseOver={onMouseOver}
     >
       {cellValue}
     </div>

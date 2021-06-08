@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Amie React Word Find Game
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Cloning the project
+You can clone the project from the github repository, using `git clone` and then the clone url
+
+## Installing Dependencies
+
+To install dependencies use
+### yarn install
 
 ## Available Scripts
 
@@ -14,10 +22,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+When you reach  the end of the game, refresh  the screen to start the game again
+
+
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Unfortunately this  application has no tests at the moment :(
 
 ### `yarn build`
 
@@ -39,8 +49,4 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Happy playing :)

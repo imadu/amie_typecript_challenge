@@ -20,9 +20,6 @@ class App extends Component<AppProps, AppState> {
     return (
       <div>
         <Hello name={this.state.name} />
-        <p>
-          Look for the words for <strong>Cole</strong>
-        </p>
         <Game>
           <GameGrid/>
         </Game>

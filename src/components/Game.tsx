@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import data from '../source-data.json'
 
 const initialState = {
@@ -10,11 +10,13 @@ const initialState = {
   advance: () => {}
 }
 
-const gameReducer = (state, action) => {
+/**Had to use an any type here because react suspects that gameData could have a situation  
+ * where it doens't come with  a completed  property and I didn't know how to fix that
+*/
+const gameReducer = (state: any, action: any) => {
   switch (action.type) {
     case 'UPDATE_LEVEL': {
       const nextLevel = state.gameState.level + 1
-      console.log('ADVANCING')
       const completed = !state.gameData[`data${nextLevel}`]
       return {
         ...state, 
@@ -40,9 +42,11 @@ export default function Game ({children}) {
     dispatch({type: 'UPDATE_LEVEL'})
   }
 
+  const isCompleted = state.gameState.completed
+
   return (
     <GameContext.Provider value={{ ...state, advance }}>
-      {children}
+      {isCompleted ? <h1>You've reached the end. Refresh to start again</h1> : children}
     </GameContext.Provider>
   )
 }
